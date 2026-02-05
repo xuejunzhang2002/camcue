@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Predicting Camera Pose from Perspective Descriptions for Spatial Reasoning">
+  <meta name="keywords" content="Camera Pose, Spatial Reasoning, Vision-Language, Perspective Descriptions">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predicting Camera Pose from Perspective Descriptions for Spatial Reasoning</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐮</text></svg>"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Predicting Camera Pose from Perspective Descriptions for Spatial Reasoning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://xuejunzhang2002.github.io" style="color: #0066cc;">Xuejun Zhang</a>,</span>
+            <span class="author-block"><a href="https://adititiwari19.github.io/" style="color: #0066cc;">Aditi Tiwari</a>,</span>
+            <span class="author-block"><a href="https://mikewangwzhl.github.io/" style="color: #0066cc;">Zhenhailong Wang</a>,</span>
+            <span class="author-block"><a href="https://blender.cs.illinois.edu/hengji/research.html" style="color: #0066cc;">Heng Ji</a></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Illinois Urbana-Champaign</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+                <span class="link-block">
+                  <a href="#"
+                      class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        &#129303; 
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>GitHub</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        We propose CamCue, a pose-aware multi-image framework that grounds language-specified viewpoints to explicit camera poses and generates the corresponding imagined view.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Multi-image spatial reasoning remains challenging for current multimodal large language models (MLLMs). While single-view perception is inherently 2D, reasoning over multiple views requires building a coherent scene understanding across viewpoints. In particular, we study perspective taking, where a model must build a coherent 3D understanding from multi-view observations and use it to reason from a new, language-specified viewpoint. We propose CamCue, a pose-aware multi-image framework that grounds language-specified viewpoints to explicit camera poses and generates the corresponding imagined view. To support this setting, we curate CAMCUE-DATA with 27,668 training and 508 test instances pairing multi-view images and poses with diverse target-viewpoint descriptions and perspective-shift questions. We also include human annotated viewpoint descriptions in the test split to evaluate generalization to human language. CAMCUE improves overall accuracy by 9.06% and predicts target poses from natural-language viewpoint descriptions with over 90% rotation accuracy within 20° and translation accuracy within a 0.5 error threshold. This direct grounding avoids expensive test-time search-and-match, reducing inference time from 256.6s to 1.45s per example and enabling fast, interactive use in real-world scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Overview</h2>
+    <div class="content has-text-justified">
+      <p>
+        CAMCUE addresses perspective taking in multi-image spatial reasoning by grounding language-specified viewpoints to explicit camera poses. Given multi-view observations, CAMCUE builds a coherent 3D understanding and reasons from novel viewpoints specified in natural language. The framework uses camera pose as an explicit geometric anchor for cross-view fusion and generates pose-conditioned imagined views to support answering perspective-shift questions.
+      </p>
+      <figure>
+        <img src="./static/images/teaser.png" alt="CAMCUE Overview">
+        <figcaption>CAMCUE overview: grounding language-specified viewpoints to camera poses for perspective-shift reasoning.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Framework</h2>
+    <div class="content has-text-justified">
+      <p>
+        CAMCUE injects per-view pose into visual tokens, grounds natural-language viewpoint descriptions to a target camera pose, and synthesizes a pose-conditioned imagined target view to support answering. This direct grounding avoids expensive test-time search-and-match, reducing inference time from 256.6s to 1.45s per example and enabling fast, interactive use in real-world scenarios.
+      </p>
+      <figure>
+        <img src="./static/images/framework.png" alt="CAMCUE Framework">
+        <figcaption>CAMCUE framework architecture.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Render Examples</h2>
+    <div class="content has-text-justified">
+      <p>
+        Examples of pose-conditioned imagined views generated by CAMCUE for perspective-shift reasoning. The model predicts target poses from natural-language viewpoint descriptions with over 90% rotation accuracy within 20° and translation accuracy within a 0.5 error threshold.
+      </p>
+      <figure>
+        <img src="./static/images/render_examples.png" alt="CAMCUE Render Examples">
+        <figcaption>Pose-conditioned imagined view examples.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Main results on perspective-shift reasoning</h2>
+        <div class="content has-text-justified">
+          <table class="table is-striped is-fullwidth">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Overall (Avg.)</th>
+                <th>Attribute</th>
+                <th>Visibility</th>
+                <th>Distance</th>
+                <th>Order</th>
+                <th>Relative</th>
+                <th>Relation Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Qwen2.5-VL-7B</td>
+                <td>71.06</td>
+                <td>93.00</td>
+                <td>84.31</td>
+                <td>71.43</td>
+                <td>59.73</td>
+                <td>55.29</td>
+                <td>55.29</td>
+              </tr>
+              <tr>
+                <td>+ MindJourney</td>
+                <td>72.83</td>
+                <td>92.00</td>
+                <td>84.31</td>
+                <td>80.22</td>
+                <td>65.75</td>
+                <td>50.59</td>
+                <td>50.59</td>
+              </tr>
+              <tr>
+                <td>+ CamCue</td>
+                <td><b>80.12</b></td>
+                <td>92.00</td>
+                <td><b>88.24</b></td>
+                <td><b>83.52</b></td>
+                <td><b>78.52</b></td>
+                <td><b>60.00</b></td>
+                <td><b>60.00</b></td>
+              </tr>
+              <tr>
+                <td>Qwen2.5-VL-3B</td>
+                <td>67.52</td>
+                <td>97.00</td>
+                <td>80.39</td>
+                <td>62.64</td>
+                <td>57.05</td>
+                <td>50.59</td>
+                <td>50.59</td>
+              </tr>
+              <tr>
+                <td>+ MindJourney</td>
+                <td>70.28</td>
+                <td>95.00</td>
+                <td>76.47</td>
+                <td>69.23</td>
+                <td>64.64</td>
+                <td>50.59</td>
+                <td>50.59</td>
+              </tr>
+              <tr>
+                <td>+ CamCue</td>
+                <td><b>75.92</b></td>
+                <td>94.12</td>
+                <td><b>82.35</b></td>
+                <td><b>80.43</b></td>
+                <td><b>67.97</b></td>
+                <td><b>63.53</b></td>
+                <td><b>63.53</b></td>
+              </tr>
+              <tr>
+                <td>InternVL-2.5-8B</td>
+                <td>68.11</td>
+                <td>89.00</td>
+                <td>76.47</td>
+                <td>80.22</td>
+                <td>58.56</td>
+                <td>52.94</td>
+                <td>52.94</td>
+              </tr>
+              <tr>
+                <td>+ MindJourney</td>
+                <td>74.21</td>
+                <td>93.00</td>
+                <td>82.35</td>
+                <td>85.71</td>
+                <td>64.64</td>
+                <td>55.29</td>
+                <td>55.29</td>
+              </tr>
+              <tr>
+                <td>+ CamCue</td>
+                <td><b>77.36</b></td>
+                <td>94.00</td>
+                <td>80.39</td>
+                <td><b>89.01</b></td>
+                <td><b>72.38</b></td>
+                <td>54.12</td>
+                <td>54.12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <pre><code>@article{zhang2025camcue,
+  title={Predicting Camera Pose from Perspective Descriptions for Spatial Reasoning},
+  author={Zhang, Xuejun and Tiwari, Aditi and Wang, Zhenhailong and Ji, Heng},
+  journal={arXiv preprint},
+  year={2025}
+}
+</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="#" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed
+            under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
